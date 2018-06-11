@@ -1,7 +1,6 @@
-FROM winamd64/python:3
+FROM python:3.6.4-jessie
 
-WORKDIR /usr/src/app
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
-COPY . .
-CMD [ "python", "./your-daemon-or-script.py" ]
+COPY ./ /mnt/
+RUN cd /mnt \
+&& pip install -r requirements.txt \
+&& python setup.py install
